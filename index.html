@@ -4,7 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ajax Course</title>
+    <title>Ajax Course | 1</title>
   </head>
-  <body></body>
+  <body>
+    <button id="button">Load Ajax</button> <br /><br />
+    <div id="text"></div>
+  </body>
+
+  <script>
+    //Create Event Listener
+    document.getElementById('button').addEventListener('click', loadText);
+
+    function loadText() {
+      //Create XHR Object
+      var xhr = new XMLHttpRequest();
+      //OPEN FUNCTION REQUEST| type, url/file-name, async
+      xhr.open('GET', 'sample2.txt', true);
+
+      xhr.onload = function() {
+        if ((this.status = 200)) {
+          //  console.log(this.responseText);
+          document.getElementById('text').innerHTML = this.responseText;
+        } else if ((this.status = 400)) {
+          document.getElementById('text').innerHTML = 'Not Found';
+        }
+      };
+      xhr.onerror = function() {
+        console.log('Request Error');
+      };
+
+      //sends request
+      xhr.send();
+    }
+
+    //HTTP STATUS
+    //200: "OK"
+    //403: "FORBIDDEN"
+    //404: "NOT FOUND"
+  </script>
 </html>
